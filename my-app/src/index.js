@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ResultContextProvider } from './context/ContextProvider';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-000000-01');
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +15,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
