@@ -7,6 +7,7 @@ import { useResultContext } from '../../context/ContextProvider';
 import Loader from '../Loader';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { sendSearchEvent } from '../../utils/GoogleAnalytics';
 
 const Results = () => {
 
@@ -16,10 +17,12 @@ const Results = () => {
     useEffect(()=>{
         if(searchTerm){
             if(location.pathname === '/videos'){
-                getResults(`/search/q=${searchTerm} videos`)
+                getResults(`/search/q=${searchTerm} videos`);
+                sendSearchEvent(searchTerm);
             }
             else{
                 getResults(`${location.pathname}/q=${searchTerm}&num=40`);
+                sendSearchEvent(searchTerm);
             }
         }
     },[searchTerm, location.pathname]);
